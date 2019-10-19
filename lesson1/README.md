@@ -1,5 +1,6 @@
 # JSCrashCourse - lesson 1
 
+## Homework
 1) Create a GitHub account
 2) Come up with your very own project idea that you will build throughout the course (you can change this afterwards)
 3) Create at least 2 different classes and several instances for these classes for your projects
@@ -19,6 +20,6 @@ create a hiking app
 - mountaineers can hike from one hut to the next
 - trails are logged in their log
 - mountaineers can have a meal at the hut
-- mountains gan list their huts
+- mountains can list their huts
 - mountains can list their trails
 - huts can list their trails (start or end there)
