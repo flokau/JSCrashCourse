@@ -97,7 +97,7 @@ boofe = new Hut('Boofe',elbi,'Muesli')
 viewpoint = new Hut('Viewpoint',kickelhahn,'air & love')
 heimweg = new Trail('Heimweg',goethehuette,home,'Bike')
 kammweg = new Trail('Kammweg',viewpoint,goethehuette,'Bike')
-seTrail = new Trail('SW-Trail',boofe,viewpoint,'Hike')
+seTrail = new Trail('SE-Trail',boofe,viewpoint,'Hike')
 kim = new Mountaineer('Kim',boofe,'Bike')
 
 //run
