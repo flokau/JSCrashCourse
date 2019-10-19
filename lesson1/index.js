@@ -6,14 +6,14 @@ Mountain = class {
         this.huts = []
     }
     getTrails(){
+        console.log('------')
         console.log(this.name,'has these trails:')
         this.trails.forEach(element => console.log(element.name));
-        console.log('------')
     }
     getHuts(){
+        console.log('------')
         console.log(this.name,'has these huts:')
         this.huts.forEach(element => console.log(element.name));
-        console.log('------')
     }
 }
 //then adding trails. I initially thought about them being compatible only for hiking,biking,climbing but that got too complex. maybe continuing on it later
@@ -39,9 +39,9 @@ Hut = class{
         this.trails =[]
     }
     getTrails(){
+        console.log('------');
         console.log(this.name,'has these trails:');
         this.trails.forEach(element => console.log(element.name));
-        console.log('------');
     }
 }
 
@@ -50,26 +50,34 @@ Mountaineer = class{
         this.name = name
         this.location = location
         this.ability = ability
+        this.log = []
     }
     doTrail(trail){
+        console.log('------')
         console.log('Starting the Trail',trail.name,'at',this.location.name);
         console.log('doing trail');
         console.log('Arrived at',trail.endHut.name);
-        console.log('------')
         this.location = trail.endHut
+        this.log.push(trail);
     }
     eat(){
-        console.log('Eating',this.location.meal);
         console.log('------')
+        console.log('Eating',this.location.meal);
     }
     getTrails(){
+        console.log('------')
         console.log(this.name,'is currently at',this.location.name,'where the following trails start:')
         this.location.trails.forEach(element => console.log(element.name));
+    }
+    showOffTrails(){
         console.log('------')
+        console.log(this.name,'did these trails:')
+        this.log.forEach(element => console.log(element.name));
     }
 }
 
 function doTour(mountaineer){
+    console.log('------')
     while (mountaineer.location.name != 'Home'){ //okay I cheated on this one and used knowledge from former courses; this will end up in an infinite loop if the content isn't created accordingly... to be improved
         console.log(mountaineer.name,'is currently at',mountaineer.location.name);
         mountaineer.location.getTrails();
@@ -94,3 +102,4 @@ kim = new Mountaineer('Kim',boofe,'Bike')
 
 //run
 doTour(kim)
+kim.showOffTrails()
