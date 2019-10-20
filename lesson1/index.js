@@ -60,7 +60,7 @@ var Mountaineer = class {
   doTrail (trail) {
     console.log('------')
     console.log('Starting the Trail', trail.name, 'at', this.location.name)
-    if (trail.style === 'hike') {
+    if (trail.style === 'hike') { // i am pretty sure tere is a nicer way to solve this. this looks very repetitive
       if (this.climbing === true) {
         console.log('hiking')
       }
