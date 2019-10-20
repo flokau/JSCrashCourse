@@ -103,7 +103,7 @@ var Mountaineer = class {
 function doTour (mountaineer) {
   console.log('------')
   while (mountaineer.location.name !== 'Home') { // okay I cheated on this one and used knowledge from former courses; this will end up in an infinite loop if the content isn't created accordingly... to be improved
-    console.log(mountaineer.name, 'is currently at', mountaineer.location.name)
+    console.log(mountaineer.name, 'is currently at', mountaineer.location.name, 'on the mountain', mountaineer.location.mountain.name)
     mountaineer.location.getTrails()
     mountaineer.eat()
     console.log('chosing', mountaineer.location.trails[0].name)
@@ -114,10 +114,10 @@ function doTour (mountaineer) {
 
 // create some content
 var kickelhahn = new Mountain('Kickelhahn')
-var elbi = new Mountain('Elbsandstein')
+var lindenberg = new Mountain('Lindenberg')
 var goethehuette = new Hut('Goethehuette', kickelhahn, 'Mushroom Omelette')
 var home = new Hut('Home', kickelhahn, 'Spaghetti')
-var boofe = new Hut('Boofe', elbi, 'Muesli')
+var boofe = new Hut('Boofe', lindenberg, 'Muesli')
 var viewpoint = new Hut('Viewpoint', kickelhahn, 'air & love')
 var heimweg = new Trail('Heimweg', goethehuette, home, 'bike')
 var kammweg = new Trail('Kammweg', viewpoint, goethehuette, 'bike')
