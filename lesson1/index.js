@@ -18,9 +18,9 @@ var Mountain = class {
     this.huts.forEach(element => console.log(element.name))
   }
 }
-// then adding trails. I initially thought about them being compatible only for hiking,biking,climbing but that got too complex. maybe continuing on it later
+// then adding trails
 var Trail = class {
-  constructor (name, start, end, maxCompatibility) {
+  constructor (name, start, end, style) {
     this.name = name
     this.startHut = start
     start.trails.push(this) // adding the trail to the start hut
@@ -28,7 +28,7 @@ var Trail = class {
     this.endHut = end
     end.trails.push(this) // adding the trail to the end hut
     end.mountain.trails.push(this) // adding the trail to the mountain of the end hut
-    this.maxCompatibility = maxCompatibility // to be implemented properly...
+    this.style = style // hiking (default), bike or climbing
   }
 }
 // Huts serve some food and also have some signs indicating the available trails via getTrails
@@ -49,17 +49,34 @@ var Hut = class {
 }
 
 var Mountaineer = class {
-  constructor (name, location, ability) {
+  constructor (name, location, bike, climbing) {
     this.name = name
     this.location = location
-    this.ability = ability
+    this.bike = bike
+    this.climbing = climbing
     this.log = []
   }
 
   doTrail (trail) {
     console.log('------')
     console.log('Starting the Trail', trail.name, 'at', this.location.name)
-    console.log('doing trail')
+    if (trail.style === 'hike') {
+      if (this.climbing === true) {
+        console.log('hiking')
+      }
+    } else if (trail.style === 'bike') {
+      if (this.bike === true) {
+        console.log('going by bike')
+      } else {
+        console.log('hiking the trail')
+      }
+    } else if (trail.style === 'climbing') {
+      if (this.climbing === true) {
+        console.log('climbing!')
+      } else {
+        console.log('cannot do that route')
+      }
+    }
     console.log('Arrived at', trail.endHut.name)
     this.location = trail.endHut
     this.log.push(trail)
@@ -85,7 +102,7 @@ var Mountaineer = class {
 
 function doTour (mountaineer) {
   console.log('------')
-  while (mountaineer.location.name != 'Home') { // okay I cheated on this one and used knowledge from former courses; this will end up in an infinite loop if the content isn't created accordingly... to be improved
+  while (mountaineer.location.name !== 'Home') { // okay I cheated on this one and used knowledge from former courses; this will end up in an infinite loop if the content isn't created accordingly... to be improved
     console.log(mountaineer.name, 'is currently at', mountaineer.location.name)
     mountaineer.location.getTrails()
     mountaineer.eat()
@@ -102,10 +119,10 @@ var goethehuette = new Hut('Goethehuette', kickelhahn, 'Mushroom Omelette')
 var home = new Hut('Home', kickelhahn, 'Spaghetti')
 var boofe = new Hut('Boofe', elbi, 'Muesli')
 var viewpoint = new Hut('Viewpoint', kickelhahn, 'air & love')
-var heimweg = new Trail('Heimweg', goethehuette, home, 'Bike')
-var kammweg = new Trail('Kammweg', viewpoint, goethehuette, 'Bike')
-var seTrail = new Trail('SE-Trail', boofe, viewpoint, 'Hike')
-var kim = new Mountaineer('Kim', boofe, 'Bike')
+var heimweg = new Trail('Heimweg', goethehuette, home, 'bike')
+var kammweg = new Trail('Kammweg', viewpoint, goethehuette, 'bike')
+var seTrail = new Trail('SE-Trail', boofe, viewpoint, 'hike')
+var kim = new Mountaineer('Kim', boofe, true, true)
 
 // run
 doTour(kim)
