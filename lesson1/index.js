@@ -1,5 +1,5 @@
 // first we need some mountains to hike. they will have as many trails and huts, as we create later on. We have our guidebook at hand with getTrails and getHuts
-var Mountain = class {
+class Mountain {
   constructor (name) {
     this.name = name
     this.trails = []
@@ -19,7 +19,7 @@ var Mountain = class {
   }
 }
 // then adding trails
-var Trail = class {
+class Trail {
   constructor (name, start, end, style) {
     this.name = name
     this.startHut = start
@@ -32,7 +32,7 @@ var Trail = class {
   }
 }
 // Huts serve some food and also have some signs indicating the available trails via getTrails
-var Hut = class {
+class Hut {
   constructor (name, mountain, meal) {
     this.name = name
     this.mountain = mountain
@@ -48,13 +48,13 @@ var Hut = class {
   }
 }
 
-var Mountaineer = class {
+class Mountaineer {
   constructor (name, location, bike, climbing) {
     this.name = name
     this.location = location
-    this.bike = bike
-    this.climbing = climbing
-    this.log = []
+    this.bike = Boolean(bike)
+    this.climbing = Boolean(climbing)
+    this.log = new Set([])
   }
 
   doTrail (trail) {
@@ -79,7 +79,7 @@ var Mountaineer = class {
     }
     console.log('Arrived at', trail.endHut.name)
     this.location = trail.endHut
-    this.log.push(trail)
+    this.log.add(trail)
   }
 
   eat () {
@@ -113,16 +113,16 @@ function doTour (mountaineer) {
 }
 
 // create some content
-var kickelhahn = new Mountain('Kickelhahn')
-var lindenberg = new Mountain('Lindenberg')
-var goethehuette = new Hut('Goethehuette', kickelhahn, 'Mushroom Omelette')
-var home = new Hut('Home', kickelhahn, 'Spaghetti')
-var boofe = new Hut('Boofe', lindenberg, 'Muesli')
-var viewpoint = new Hut('Viewpoint', kickelhahn, 'air & love')
-var heimweg = new Trail('Heimweg', goethehuette, home, 'bike')
-var kammweg = new Trail('Kammweg', viewpoint, goethehuette, 'bike')
-var seTrail = new Trail('SE-Trail', boofe, viewpoint, 'hike')
-var kim = new Mountaineer('Kim', boofe, true, true)
+const kickelhahn = new Mountain('Kickelhahn')
+const lindenberg = new Mountain('Lindenberg')
+const goethehuette = new Hut('Goethehuette', kickelhahn, 'Mushroom Omelette')
+const home = new Hut('Home', kickelhahn, 'Spaghetti')
+const boofe = new Hut('Boofe', lindenberg, 'Muesli')
+const viewpoint = new Hut('Viewpoint', kickelhahn, 'air & love')
+const heimweg = new Trail('Heimweg', goethehuette, home, 'bike')
+const letkammweg = new Trail('Kammweg', viewpoint, goethehuette, 'bike')
+const seTrail = new Trail('SE-Trail', boofe, viewpoint, 'hike')
+const kim = new Mountaineer('Kim', boofe, true, true)
 
 // run
 doTour(kim)
