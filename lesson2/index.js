@@ -3,6 +3,7 @@ const Trail = require('./trail')
 const Hut = require('./hut')
 const Mountaineer = require('./mountaineer')
 const Chalk = require('chalk')
+const Database = require('./database')
 
 function doTour (mountaineer) {
   console.log(Chalk.black.bgCyan(mountaineer.name, 'is at', mountaineer.location.name, 'on the mountain', mountaineer.location.mountain.name, 'and starting the tour'))
@@ -26,7 +27,13 @@ kickelhahn.trails.push(new Trail('Heimweg', goethehuette, home, 'bike'))
 kickelhahn.trails.push(new Trail('Kammweg', viewpoint, goethehuette, 'bike'))
 lindenberg.trails.push(new Trail('SE-Trail', boofe, viewpoint, 'hike'))
 const kim = new Mountaineer('Kim', boofe, true, true)
-
 // run
 doTour(kim)
 kim.showOffTrails()
+
+Database.save('lindenberg.json', lindenberg)
+Database.save('kickelhahn.json', kickelhahn)
+Database.save('goethehuette.json', goethehuette)
+Database.save('boofe.json', boofe)
+Database.save('home.json', home)
+Database.save('kim.json', kim)
