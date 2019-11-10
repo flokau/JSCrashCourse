@@ -1,0 +1,11 @@
+const Person = require('./person')
+const Meetup = require('./meetup')
+const Database = require('./database')
+Database.load('meetup.json', (err, loadedFile) => {
+  console.log('hello!')
+  const wtmb = Meetup.create(loadedFile)
+  const omur = new Person('Ömür', 30)
+  omur.attend(wtmb)
+  wtmb.printAttendeeNames()
+  console.log(wtmb.name)
+})
