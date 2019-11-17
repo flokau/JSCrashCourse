@@ -1,3 +1,4 @@
 JSCC.code-workspace
+.vscode/
 node_modules/
 worker/
