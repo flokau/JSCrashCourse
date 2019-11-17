@@ -15,7 +15,9 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const item = await Service.add(req.body)
-  await Service.initTrail(req.body.startHut, req.body.endHut)
+  const start = await Service.find(req.body.startHut)
+  const end = await Service.find(req.body.endHut)
+  item.initTrail(start, end)
   res.send(item)
 })
 
