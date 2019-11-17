@@ -7,9 +7,7 @@ module.exports = class Mountain {
     this.huts = []
   }
 
-  getHuts () {
-    console.log('------')
-    console.log(this.name, 'has these huts:')
-    this.huts.forEach(element => console.log(element.name))
+  static create (name) {
+    return new Mountain(name)
   }
 }

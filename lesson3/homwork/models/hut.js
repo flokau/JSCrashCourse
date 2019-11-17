@@ -2,13 +2,12 @@
 module.exports = class Hut {
   constructor (name, mountain, meal) {
     this.name = name
-    this.mountain = mountain.name
-    mountain.huts.push(this) // adding hut to its mountain
+    this.mountain = mountain
     this.meal = meal
     this.trails = []
   }
 
-  getTrails () {
-    this.trails.forEach(element => console.log(element))
+  static create (name, mountain, meal) {
+    return new Hut(name, mountain, meal)
   }
 }
