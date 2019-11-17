@@ -7,9 +7,14 @@ const MountainSchema = mongoose.Schema({
   },
   huts: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Hut'
+    ref: 'Hut',
+    autopopulate: {
+      maxDepth: 1
+    }
   }]
 })
+
+MountainSchema.plugin(require('mongoose-autopopulate'))
 
 const MountainModel = mongoose.model('Mountain', MountainSchema)
 

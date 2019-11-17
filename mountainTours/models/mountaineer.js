@@ -7,13 +7,19 @@ const MountaineerSchema = mongoose.Schema({
   },
   location: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Hut'
+    ref: 'Hut',
+    autopopulate: {
+      maxDepth: 1
+    }
   }],
   bike: Boolean,
   climbing: Boolean,
   log: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Trail'
+    ref: 'Trail',
+    autopopulate: {
+      maxDepth: 1
+    }
   }]
 })
 
@@ -52,6 +58,8 @@ MountaineerSchema.doTrail = async function (trail) {
   this.location = trail.endHut
   this.log.add(trail)
 }
+
+MountaineerSchema.plugin(require('mongoose-autopopulate'))
 
 const MountaineerModel = mongoose.model('Mountaineer', MountaineerSchema)
 

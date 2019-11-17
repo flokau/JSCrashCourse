@@ -7,13 +7,21 @@ const TrailSchema = mongoose.Schema({
   },
   startHut: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Hut'
+    ref: 'Hut',
+    autopopulate: {
+      maxDepth: 1
+    }
   }],
   endHut: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Hut'
+    ref: 'Hut',
+    autopopulate: {
+      maxDepth: 1
+    }
   }]
 })
+
+TrailSchema.plugin(require('mongoose-autopopulate'))
 
 const TrailModel = mongoose.model('Trail', TrailSchema)
 

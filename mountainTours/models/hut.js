@@ -7,14 +7,22 @@ const HutSchema = mongoose.Schema({
   },
   trails: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Trail'
+    ref: 'Trail',
+    autopopulate: {
+      maxDepth: 1
+    }
   }],
   mountain: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Mountain'
+    ref: 'Mountain',
+    autopopulate: {
+      maxDepth: 1
+    }
   },
   meal: String
 })
+
+HutSchema.plugin(require('mongoose-autopopulate'))
 
 const HutModel = mongoose.model('Hut', HutSchema)
 
