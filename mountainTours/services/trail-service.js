@@ -7,9 +7,12 @@ class TrailService extends BaseService {
 
     async connectTrail (trail) {
         const start = await HutService.find(trail.startHut)
-        start.trails.push(trail.id)
+        start.trails.push(trail)
         const end = await HutService.find(trail.endHut)
-        end.trails.push(trail.id)
+        end.trails.push(trail)
+        await start.save()
+        await end.save()
+        await trail.save()
   }
 }
 
